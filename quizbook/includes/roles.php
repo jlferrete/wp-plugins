@@ -1,5 +1,9 @@
 <?php
 
+if (! defined('ABSPATH')) {
+  exit();
+}
+
 function quizbook_crear_role() {
     add_role('quizbook', 'Quiz');
 }
