@@ -19,4 +19,4 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/posttypes.php';
 /*
 *   Regenera las reglas de las URL al activar
 */
-register_activation_hook( __FILE__, 'rewrite_flush' );
+register_activation_hook( __FILE__, 'quizbook_rewrite_flush' );

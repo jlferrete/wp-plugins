@@ -1,6 +1,6 @@
 <?php
 
-function post_type() {
+function quizbook_post_type() {
     $labels = array(
         'name'                  => _x( 'Quiz', 'Post type general name', 'quizbook' ),
         'singular_name'         => _x( 'Quiz', 'Post type singular name', 'quizbook' ),
@@ -47,13 +47,13 @@ function post_type() {
     register_post_type( 'Quizzes', $args );
 }
 
-add_action( 'init', 'post_type' );
+add_action( 'init', 'quizbook_post_type' );
 
 /*
 **  Flush Rewrite
 */
 
-function rewrite_flush() {
-  post_type();
+function quizbook_rewrite_flush() {
+  quizbook_post_type();
   flush_rewrite_rules();
 }
