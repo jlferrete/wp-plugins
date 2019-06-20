@@ -1,5 +1,9 @@
 <?php
 
+if (! defined('ABSPATH')) {
+  exit();
+}
+
 function quizbook_post_type() {
     $labels = array(
         'name'                  => _x( 'Quiz', 'Post type general name', 'quizbook' ),
