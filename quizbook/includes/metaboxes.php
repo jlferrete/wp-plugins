@@ -14,7 +14,10 @@ add_action('add_meta_boxes', 'quizbook_agregar_metaboxes');
 /*
 *   Muestra el contenido del HTML de los metaboxes
 */
-function quizbook_metaboxes($post) { ?>
+function quizbook_metaboxes($post) {
+    wp_nonce_field(basename(__FILE__), 'quizbook_nonce');
+
+     ?>
    <table class="form-table">
        <tr>
            <th class="row-title" colspan="2">
@@ -84,38 +87,47 @@ function quizbook_metaboxes($post) { ?>
 
 function quizbook_guardar_metaboxes($post_id, $post, $update) {
 
-     $respuesta_a = $respuesta_b = $respuesta_c = $respuesta_d = $respuesta_e = '';
+    if(!isset($_POST['quizbook_nonce']) || !wp_verify_nonce( $_POST['quizbook_nonce'], basename(__FILE__)  ) )
+    return $post_id;
+
+    if(!current_user_can('edit_post', $post_id))
+    return $post_id;
+
+    if(defined("DOING_AUTOSAVE") && DOING_AUTOSAVE)
+    return $post_id;
+
+    $respuesta_a = $respuesta_b = $respuesta_c = $respuesta_d = $respuesta_e = '';
 
 
-     if(isset( $_POST['qb_respuesta_a'] ) ) {
-       $respuesta_a = sanitize_text_field($_POST['qb_respuesta_a']);
-     }
-     update_post_meta($post_id, 'qb_respuesta_a', $respuesta_a );
+    if(isset( $_POST['qb_respuesta_a'] ) ) {
+        $respuesta_a = sanitize_text_field($_POST['qb_respuesta_a']);
+    }
+    update_post_meta($post_id, 'qb_respuesta_a', $respuesta_a );
 
-     if(isset($_POST['qb_respuesta_b'])) {
-       $respuesta_b = sanitize_text_field($_POST['qb_respuesta_b']);
-     }
-     update_post_meta($post_id, 'qb_respuesta_b', $respuesta_b );
+    if(isset($_POST['qb_respuesta_b'])) {
+        $respuesta_b = sanitize_text_field($_POST['qb_respuesta_b']);
+    }
+    update_post_meta($post_id, 'qb_respuesta_b', $respuesta_b );
 
-     if(isset($_POST['qb_respuesta_c'])) {
-       $respuesta_c = sanitize_text_field($_POST['qb_respuesta_c']);
-     }
-     update_post_meta($post_id, 'qb_respuesta_c', $respuesta_c );
+    if(isset($_POST['qb_respuesta_c'])) {
+        $respuesta_c = sanitize_text_field($_POST['qb_respuesta_c']);
+    }
+    update_post_meta($post_id, 'qb_respuesta_c', $respuesta_c );
 
-     if(isset($_POST['qb_respuesta_d'])) {
-       $respuesta_d = sanitize_text_field($_POST['qb_respuesta_d']);
-     }
-     update_post_meta($post_id, 'qb_respuesta_d', $respuesta_d );
+    if(isset($_POST['qb_respuesta_d'])) {
+        $respuesta_d = sanitize_text_field($_POST['qb_respuesta_d']);
+    }
+    update_post_meta($post_id, 'qb_respuesta_d', $respuesta_d );
 
-     if(isset($_POST['qb_respuesta_e'])) {
-       $respuesta_e = sanitize_text_field($_POST['qb_respuesta_e']);
-     }
-     update_post_meta($post_id, 'qb_respuesta_e', $respuesta_e );
+    if(isset($_POST['qb_respuesta_e'])) {
+        $respuesta_e = sanitize_text_field($_POST['qb_respuesta_e']);
+    }
+    update_post_meta($post_id, 'qb_respuesta_e', $respuesta_e );
 
-     if(isset($_POST['quizbook_correcta'])) {
-       $correcta = sanitize_text_field($_POST['quizbook_correcta']);
-     }
-     update_post_meta($post_id, 'quizbook_correcta', $correcta );
+    if(isset($_POST['quizbook_correcta'])) {
+        $correcta = sanitize_text_field($_POST['quizbook_correcta']);
+    }
+    update_post_meta($post_id, 'quizbook_correcta', $correcta );
 }
 
 add_action('save_post', 'quizbook_guardar_metaboxes', 10, 3);
