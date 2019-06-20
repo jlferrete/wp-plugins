@@ -26,6 +26,7 @@ function quizbook_post_type() {
         'filter_items_list'     => _x( 'Filtrar Quizzes por lista', '”. Added in 4.4', 'quizbook' ),
         'items_list_navigation' => _x( 'Navegación de Quizzes', '', 'quizbook' ),
         'items_list'            => _x( 'Lista de Quizzes', '', 'quizbook' ),
+
     );
 
     $args = array(
@@ -36,12 +37,13 @@ function quizbook_post_type() {
         'show_in_menu'       => true,
         'query_var'          => true,
         'rewrite'            => array( 'slug' => 'Quizzes' ),
-        'capability_type'    => 'post',
+        'capability_type'    => array( 'quiz', 'quizzes'),
         'menu_position'      => 6,
         'menu_icon'          => 'dashicons-welcome-learn-more',
         'has_archive'        => true,
         'hierarchical'       => false,
         'supports'           => array( 'title', 'editor', 'thumbnail'),
+        'map_meta_cap'          => true,
     );
 
     register_post_type( 'Quizzes', $args );
