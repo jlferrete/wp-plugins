@@ -3,13 +3,15 @@
 if (! defined('ABSPATH')) exit();
 
 /*
-* Crea un shorcode, uso: [quizbook]
+* Crea un shorcode, uso: [quizbook preguntas="" orden=""]
 */
 
-function quizbook_shortcode( ) {
+function quizbook_shortcode( $atts ) {
 	
 	$args = array(
 		'post_type' => 'quizzes',
+		'posts_per_page' => $atts['preguntas'],
+		'orderby' => $atts['orden']
 	);
 	$quizbook = new WP_Query($args); ?>
 	<form name="quizbook_enviar" id="quizbook_enviar">
