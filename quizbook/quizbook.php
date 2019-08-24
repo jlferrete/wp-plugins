@@ -49,3 +49,8 @@ require_once plugin_dir_path(__FILE__) . 'includes/funciones.php';
  * Añade hojas de estilo y archivos javascript
  */
 require_once plugin_dir_path(__FILE__) . 'includes/scripts.php';
+/*
+ * Da los resultados del examen
+ */
+require_once plugin_dir_path(__FILE__) . 'includes/resultados.php';
+
