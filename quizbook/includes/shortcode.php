@@ -30,7 +30,7 @@ function quizbook_shortcode( $atts ) {
 
 							if( $resultado === 0 ) { ?>
 
-								<div id="<?php echo get_the_ID() . ":" . $numero[2]; ?>">
+								<div id="<?php echo get_the_ID() . ":" . $numero[2]; ?>" class="respuesta">
 									<?php echo $opcion[0] ?>
 								</div>
 							
@@ -46,7 +46,7 @@ function quizbook_shortcode( $atts ) {
 			</ul>
 		</div> <!--#quizbook-->
 	
-		<input type="submit" value="Enviar" id="quizbook_btn_submit">
+		<input type="submit" value="Enviar" id="quizbook_enviar">
 	
 		<div id="quizbook_resultado"></div>
 	</form><!--form-->

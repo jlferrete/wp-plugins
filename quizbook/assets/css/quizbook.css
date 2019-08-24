@@ -15,11 +15,9 @@
     border:1px solid #e1e1e1;
     margin-bottom: 20px;
 }
-.quizbook ul li .respuesta:hover {
+.quizbook ul li .respuesta:hover,
+.quizbook ul li .respuesta.seleccionada {
     background-color: cornflowerblue;
     color:white;
     cursor: pointer;
-}
-.quizbook ul li .respuesta.seleccionada{
-    
 }
