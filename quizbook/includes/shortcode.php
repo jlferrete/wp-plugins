@@ -9,16 +9,35 @@ if (! defined('ABSPATH')) exit();
 function quizbook_shortcode( ) {
 	
 	$args = array(
-		'post_type' => 'quizes',
+		'post_type' => 'quizzes',
 	);
 	$quizbook = new WP_Query($args); ?>
 	<form name="quizbook_enviar" id="quizbook_enviar">
 		<div id="quizbook" class="quizbook">
 			<ul>
 			<?php while($quizbook->have_posts()): $quizbook->the_post(); ?>
-				<li data-pregunta="<?php echo get_the_ID(); ?>">
+				<li>
 					<h3><?php the_title(); ?></h3>
 					<?php the_content(); ?>
+
+					<?php
+						$opciones = get_post_meta(get_the_ID());
+						foreach( $opciones as $llave => $opcion) {
+							$resultado = quizbook_filtrar_funciones($llave);
+							$numero = explode('_', $llave);
+
+							if( $resultado === 0 ) { ?>
+
+								<div id="<?php echo get_the_ID() . ":" . $numero[2]; ?>">
+									<?php echo $opcion[0] ?>
+								</div>
+							
+							<?php
+
+							}
+
+						}
+					?>
 				</li>
 	
 			<?php endwhile; ?>
