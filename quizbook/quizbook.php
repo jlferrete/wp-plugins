@@ -10,3 +10,42 @@ License: GPL2
 License URI:  https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: quizbook
 */
+
+/*
+*   Añade el Post de Quizzes
+*/
+require_once plugin_dir_path( __FILE__ ) . 'includes/posttypes.php';
+
+/*
+*   Regenera las reglas de las URL al activar
+*/
+register_activation_hook( __FILE__, 'quizbook_rewrite_flush' );
+
+/*
+*   Añade Metaboxes a los Quizzes
+*/
+require_once plugin_dir_path( __FILE__ ) . 'includes/metaboxes.php';
+
+/*
+*   Añade Roles y Capabilities a Quizzies
+*/
+require_once plugin_dir_path( __FILE__ ) . 'includes/roles.php';
+register_activation_hook( __FILE__ , 'quizbook_crear_role' );
+register_deactivation_hook( __FILE__ , 'quizbook_remover_role'  );
+/*
+*   Añade Capabilities a Quizzies
+*/
+register_activation_hook( __FILE__, 'quizbook_agregar_capabilities' );
+register_deactivation_hook( __FILE__, 'quizbook_remover_capabilities' );
+/*
+ * Imprime un Shortcode
+ */
+require_once plugin_dir_path(__FILE__) . 'includes/shortcode.php';
+/*
+ * Funciones personalizadas
+ */
+require_once plugin_dir_path(__FILE__) . 'includes/funciones.php';
+/*
+ * Añade hojas de estilo y archivos javascript
+ */
+require_once plugin_dir_path(__FILE__) . 'includes/scripts.php';

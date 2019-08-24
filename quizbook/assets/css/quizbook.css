@@ -1,0 +1,25 @@
+.quizbook {
+
+}
+.quizbook ul {
+    list-style: none;
+}
+.quizbook ul li {
+    padding: 30px;
+}
+.quizbook ul li h3 {
+
+}
+.quizbook ul li .respuesta {
+    padding: 20px;
+    border:1px solid #e1e1e1;
+    margin-bottom: 20px;
+}
+.quizbook ul li .respuesta:hover {
+    background-color: cornflowerblue;
+    color:white;
+    cursor: pointer;
+}
+.quizbook ul li .respuesta.seleccionada{
+    
+}
